@@ -142,7 +142,7 @@ public class MyApplication extends Application {
 }
 ```
 
-### 简而言之
+## 简而言之
 * Target API 14
 * 程序进入后台时使用[Application#onTrimMemory(int level)](https://developer.android.com/reference/android/app/Application.html#onTrimMemory(int)以及[TRIM_MEMORY_UI_HIDDEN](https://developer.android.com/reference/android/content/ComponentCallbacks2.html#TRIM_MEMORY_UI_HIDDEN)
 * 注册一个广播接收[Intent.ACTION_SCREEN_OFF](https://developer.android.com/reference/android/content/Intent.html#ACTION_SCREEN_OFF)来处理关闭屏幕事件
