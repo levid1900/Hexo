@@ -7,7 +7,7 @@ tags: Android
 Api14(Android 4.0/ICS)开始，我们获取到一个方法[Application#onTrimMemory(int level)](https://developer.android.com/reference/android/app/Application.html#onTrimMemory(int)。这个方法包含一个有趣的等级叫[TRIM_MEMORY_UI_HIDDEN](https://developer.android.com/reference/android/content/ComponentCallbacks2.html#TRIM_MEMORY_UI_HIDDEN)，当程序进入后台时来通知我们。
 
 举个栗子：
-```bash
+```java
 public class MyApplication extends Application {
     // ...
     @Override
@@ -27,7 +27,7 @@ Yah!!!现在你可以肯定你的App进入到后台了！
 ## 屏幕关闭时获得通知
 当屏幕关闭时，**onTrimMemory**没有被调用。为了处理这个，你需要注册一个广播[Intent.ACTION_SCREEN_OFF](https://developer.android.com/reference/android/content/Intent.html#ACTION_SCREEN_OFF)。
 
-```bash
+```java
 public class MyApplication extends Application {
   // ...
   @Override
@@ -54,7 +54,8 @@ public class MyApplication extends Application {
 当我们的应用重新进入前台时没有一个标记或者等级来通知我们，我们能做的最好的方法是使用**Activity#onResume()**。我们可以把所有的代码都加入到base Activity里面，但是没有必要。我们有一种更加简洁的处理方式，像处理进入后台那样，所以我们来使用[Application#registerActivityLifecycleCallbacks()](https://developer.android.com/reference/android/app/Application.html#registerActivityLifecycleCallbacks(android.app.Application.ActivityLifecycleCallbacks)。这个方法使你能够添加一个[ActivityLifecycleCallbacks](https://developer.android.com/reference/android/app/Application.ActivityLifecycleCallbacks.html)。就像它的名字提示一样，在每一个以及每一次生命周期时间发生时通知你，这意味着我们不用修改任何activity,也能获取每一个Activity#onResume()的效果。
 
 栗子：
-```bash
+
+```java
 public class MyApplication extends Application {
     // ...
     @Override
@@ -79,7 +80,8 @@ public class MyApplication extends Application {
 
 ## 合在一起看一下咯
 下面是一个更加复杂的栗子，当app进入到前后或者退回后台都能被通知到。
-```bash
+
+```java
 public class MyApplication extends Application {
 
     // Starts as true in order to be notified on first launch

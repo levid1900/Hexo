@@ -11,6 +11,7 @@ tags: Android
 
 # ListView的ChoiceMode
 ListView有个方法叫[setChoiceMode()](http://developer.android.com/intl/zh-cn/reference/android/widget/AbsListView.html#setChoiceMode(int)
+
 ```bash
 public void setChoiceMode (int choiceMode)
 
@@ -21,8 +22,10 @@ Parameters
 choiceMode	int: One of CHOICE_MODE_NONE, CHOICE_MODE_SINGLE, or CHOICE_MODE_MULTIPLE#
 ```
 使用这个方法可以轻易的创建出一个单选或者多选模式的ListView.
+
 **Showing Code**
-```bash
+
+```java
 String[] data = new String[]{
                "Item1",
                "Item2",
@@ -43,7 +46,8 @@ mListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 <img src="http://7xsdgx.com1.z0.glb.clouddn.com/20160328-180253.png?imageView2/2/w/200" width="200" height="350"/>
 
 使用这种模式，必须使用**android.R.layout.simple_list_item_single_choice**这个布局，来看一下这个布局到底是什么样的
-```bash
+
+```java
 <CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/text1"
     android:layout_width="match_parent"
@@ -54,8 +58,10 @@ mListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
     android:paddingStart="?android:attr/listPreferredItemPaddingStart"
     android:paddingEnd="?android:attr/listPreferredItemPaddingEnd" />
 ```
+
 可以看到这个Layout里面使用了一个CheckedTextView的自定义布局，继续看看它什么样子
-```bash
+
+```java
 /**
  * An extension to TextView that supports the {@link android.widget.Checkable} interface.
  * This is useful when used in a {@link android.widget.ListView ListView} where the it's
@@ -135,7 +141,8 @@ public class CheckedTextView extends TextView implements Checkable {
 # 自定义布局
 参考上面的CheckedTextView,来实现一个自定义布局的Item.
 ## 自定义View的实现
-```bash
+
+```java
 public class SingleChoiceItem extends RelativeLayout implements Checkable {
     private CheckBox mCheckBox;
 
@@ -196,7 +203,8 @@ public class SingleChoiceItem extends RelativeLayout implements Checkable {
 
 ## 实现XML布局
 然后新建一个Layout:item_listview
-```bash
+
+```java
 <?xml version="1.0" encoding="utf-8"?>
 <com.testapplication.singleList.SingleChoiceItem xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
@@ -238,7 +246,8 @@ public class SingleChoiceItem extends RelativeLayout implements Checkable {
 
 ## JAVA代码实现
 最后是实现代码。
-```bash
+
+```java
 public class ListTestActivity extends AppCompatActivity {
 
     private ListView mListView;
